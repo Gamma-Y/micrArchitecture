@@ -1,0 +1,9 @@
+FROM maven:3.6.0-jdk-11-slim AS build
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+VOLUME $HOME/.m2:/root/.m2
+RUN mvn -f /usr/src/app/pom.xml clean package
+
+FROM adoptopenjdk/openjdk11:alpine-jre
+COPY --from=build /usr/src/app/target/mini_service.jar /usr/app/mini_service.jar
+ENTRYPOINT ["java","-jar","/usr/app/mini_service.jar"]
