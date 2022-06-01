@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: homework1
-          image: gamma86/homework1:1
+          image: gamma86/homework1:2
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
