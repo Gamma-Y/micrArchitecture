@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homework1-ingress
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /health/
+            pathType: Prefix
+            backend:
+              service:
+                name: homework1-service
+                port:
+                  number: 80
